@@ -34,7 +34,11 @@ class DownloaderWky(object):
         self._driver.find_element_by_xpath("//input[@id='password']").send_keys(self._passwd)
         self._driver.find_element_by_xpath("//a[@class='btn btn-login']").click()
         time.sleep(self._interval)
-        logging.info('Wankeyun downloader init OK...')
+        logging.info('Wankeyun downloader init OK.')
+    
+    def __del__(self):
+        self._driver.quit()
+        logging.info('Wankeyun downloader quit OK.')
 
     def _get_account_info(self, config_type):
         try:
